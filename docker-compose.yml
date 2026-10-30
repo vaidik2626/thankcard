@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: thankcard
+      POSTGRES_PASSWORD: thankcard
+      POSTGRES_DB: thankcard
+    ports:
+      - "5432:5432"
+    volumes:
+      - thankcard-db:/var/lib/postgresql/data
+
+volumes:
+  thankcard-db:
