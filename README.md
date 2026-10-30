@@ -15,6 +15,15 @@ npm run dev                 # http://localhost:3000
 `DATABASE_URL` is set in `.env`. Copy `.env.example` to `.env` to start. Without a database, you can
 still create, preview and download cards. Only saving, history, brands, templates and bulk save need it.
 
+## Deployment (Vercel + Neon)
+
+Production: https://thankgenerate.vercel.app. It deploys automatically on every push to `main`.
+
+- `DATABASE_URL` is Neon's **pooled** URL (its host contains `-pooler`). The app uses it at runtime.
+- `DIRECT_URL` is Neon's **direct** URL. Prisma uses it for schema changes.
+- Both variables are set in Vercel → Project → Settings → Environment Variables.
+- After changing `prisma/schema.prisma`, run `npm run db:push` with the Neon URLs in `.env`.
+
 ## How it works
 
 - **One geometry, three outputs.** `src/lib/card/layout.ts` measures text with the real card fonts
